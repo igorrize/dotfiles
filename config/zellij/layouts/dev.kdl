@@ -1,0 +1,46 @@
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="file:/Users/igorlobazov/.config/zellij/plugins/zjstatus.wasm" {
+                format_left   "{mode}#[bg=#1e2030] {tabs}"
+                format_right  "#[bg=#1e2030,fg=#e0af68,bold] {command_lang} #[bg=#1e2030,fg=#7aa2f7,bold] {datetime} "
+                format_space  "#[bg=#1e2030]"
+
+                mode_normal        "#[bg=#7aa2f7,fg=#1e2030,bold]  NORMAL "
+                mode_locked        "#[bg=#e0af68,fg=#1e2030,bold]  LOCKED "
+                mode_pane          "#[bg=#9ece6a,fg=#1e2030,bold]  PANE "
+                mode_tab           "#[bg=#bb9af7,fg=#1e2030,bold]  TAB "
+                mode_resize        "#[bg=#f7768e,fg=#1e2030,bold]  RESIZE "
+                mode_scroll        "#[bg=#2ac3de,fg=#1e2030,bold]  SCROLL "
+                mode_move          "#[bg=#ff9e64,fg=#1e2030,bold]  MOVE "
+                mode_session       "#[bg=#7dcfff,fg=#1e2030,bold]  SESSION "
+                mode_tmux          "#[bg=#f7768e,fg=#1e2030,bold]  TMUX "
+                mode_entersearch   "#[bg=#2ac3de,fg=#1e2030,bold]  SEARCH "
+                mode_search        "#[bg=#2ac3de,fg=#1e2030,bold]  SEARCH "
+                mode_renametab     "#[bg=#bb9af7,fg=#1e2030,bold]  RENAME "
+                mode_renamepane    "#[bg=#9ece6a,fg=#1e2030,bold]  RENAME "
+                mode_prompt        "#[bg=#7aa2f7,fg=#1e2030,bold]  PROMPT "
+
+                tab_normal         "#[bg=#1e2030,fg=#636da6] {name} "
+                tab_active         "#[bg=#3b4261,fg=#c0caf5,bold] {name} "
+
+                datetime        "#[bg=#1e2030,fg=#7aa2f7,bold]{format}"
+                datetime_format "%H:%M"
+                datetime_timezone "Europe/Bucharest"
+
+                command_lang_command  "/Users/igorlobazov/.config/zellij/lang.sh"
+                command_lang_format   "#[bg=#1e2030,fg=#e0af68,bold]{stdout}"
+                command_lang_interval "2"
+                command_lang_rendermode "dynamic"
+            }
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    tab name="Dev" focus=true {
+        pane command="fish"
+    }
+}

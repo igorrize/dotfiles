@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Zellij development launcher
+# Usage: zj [project_name]
+
+if [ $# -eq 0 ]; then
+    layout="dev"
+else
+    layout="$1"
+fi
+
+zellij --layout ~/.config/zellij/layouts/${layout}.kdl

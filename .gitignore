@@ -1,0 +1,5 @@
+.DS_Store
+*.bak
+*.zj-radar.bak
+config/zellij/plugins/
+config/fish/fish_variables
