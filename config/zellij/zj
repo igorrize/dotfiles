@@ -1,10 +1,13 @@
 #!/bin/bash
 
-# Zellij launcher — named session, attach-or-create.
-# Usage: zj [layout]   (default layout: dev; the session is named after the layout)
-# Reattaches to an existing session of that name (survives disconnect on a remote box),
-# otherwise creates it with the matching layout.
+# Zellij launcher — named session, attach-or-create with the matching layout.
+# Usage: zj [layout]   (default: dev; the session is named after the layout)
+# If a session of that name is already running, reattach (survives disconnect on a
+# remote box); otherwise create it with ~/.config/zellij/layouts/<layout>.kdl.
 layout="${1:-dev}"
 
-zellij attach "$layout" 2>/dev/null \
-  || zellij --session "$layout" --layout ~/.config/zellij/layouts/"${layout}.kdl"
+if zellij list-sessions --no-formatting 2>/dev/null | awk '{print $1}' | grep -qx "$layout"; then
+    exec zellij attach "$layout"
+else
+    exec zellij --session "$layout" --layout ~/.config/zellij/layouts/"${layout}.kdl"
+fi
