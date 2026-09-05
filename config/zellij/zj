@@ -9,5 +9,5 @@ layout="${1:-dev}"
 if zellij list-sessions --no-formatting 2>/dev/null | awk '{print $1}' | grep -qx "$layout"; then
     exec zellij attach "$layout"
 else
-    exec zellij --session "$layout" --layout ~/.config/zellij/layouts/"${layout}.kdl"
+    exec zellij --layout ~/.config/zellij/layouts/"${layout}.kdl"
 fi
