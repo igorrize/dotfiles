@@ -6,6 +6,16 @@
 # remote box); otherwise create it with ~/.config/zellij/layouts/<layout>.kdl.
 layout="${1:-dev}"
 
+# Already inside a zellij session? Don't self-attach / nest.
+if [ -n "${ZELLIJ:-}" ]; then
+    if [ "${ZELLIJ_SESSION_NAME:-}" = "$layout" ]; then
+        echo "Already in the '$layout' session." >&2
+    else
+        echo "Inside zellij session '${ZELLIJ_SESSION_NAME:-?}'. Detach (Ctrl+o d) first to switch to '$layout'." >&2
+    fi
+    exit 0
+fi
+
 if zellij list-sessions --no-formatting 2>/dev/null | awk '{print $1}' | grep -qx "$layout"; then
     exec zellij attach "$layout"
 else
