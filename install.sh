@@ -16,6 +16,11 @@ for name in zellij fish kitty git; do
   echo "linked ~/.config/$name -> $src"
 done
 
+# expose the zj launcher on PATH (~/.local/bin is added to PATH in config.fish)
+mkdir -p "$HOME/.local/bin"
+ln -sfn "$HOME/.config/zellij/zj" "$HOME/.local/bin/zj"
+echo "linked ~/.local/bin/zj -> ~/.config/zellij/zj"
+
 # neovim config lives in its own repo (private -> needs auth or SSH-agent forwarding)
 if [ ! -d "$HOME/.config/nvim/.git" ]; then
   rm -rf "$HOME/.config/nvim"

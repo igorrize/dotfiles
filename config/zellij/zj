@@ -1,12 +1,10 @@
 #!/bin/bash
 
-# Zellij development launcher
-# Usage: zj [project_name]
+# Zellij launcher — named session, attach-or-create.
+# Usage: zj [layout]   (default layout: dev; the session is named after the layout)
+# Reattaches to an existing session of that name (survives disconnect on a remote box),
+# otherwise creates it with the matching layout.
+layout="${1:-dev}"
 
-if [ $# -eq 0 ]; then
-    layout="dev"
-else
-    layout="$1"
-fi
-
-zellij --layout ~/.config/zellij/layouts/${layout}.kdl
+zellij attach "$layout" 2>/dev/null \
+  || zellij --session "$layout" --layout ~/.config/zellij/layouts/"${layout}.kdl"
