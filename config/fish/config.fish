@@ -13,3 +13,4 @@ if test -d $HOME/sdk/go1.26.0
     fish_add_path --prepend $HOME/sdk/go1.26.0/bin
 end
 fish_add_path $HOME/.local/bin  # zj-radar CLI (and other user-local binaries)
+fish_add_path $HOME/go/bin      # locally-installed Go binaries (e.g. medidrive-cli `make install-local`)
